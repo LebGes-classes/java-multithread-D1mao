@@ -8,7 +8,6 @@ public class Main {
     public static void main(String[] args) {
         List<Worker> workers = Worker.readWorkersFromExcel();
         Worker.assignTasksToWorkers(workers);
-        // Создание и запуск потока для каждого работника
         List<Thread> workerThreads = new ArrayList<>();
         for (Worker worker : workers) {
             Thread workerThread = new Thread(worker);
@@ -16,7 +15,6 @@ public class Main {
             workerThread.start();
         }
 
-        // Ожидание завершения работы всех потоков
         for (Thread workerThread : workerThreads) {
             try {
                 workerThread.join();
